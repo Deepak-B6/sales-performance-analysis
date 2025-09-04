@@ -1,44 +1,40 @@
-📊 Sales Data Analysis
- 
- Objective
-To analyze sales performance, identify customer trends, and revenue growth opportunities.
+# 📊 Sales Data Analysis
 
-🛠 Tools & Technologies
-⦁	SQL 
-    Data cleaning, transformation, and analysis
-⦁	Excel 
-    Pivot tables, KPI tracking, and dashboards
+## 📌 Objective
+To analyze sales performance, identify customer trends, and uncover revenue growth opportunities.
 
- Key Steps & Approach
+## 🛠 Tools Used
+- **SQL** → Data cleaning, aggregation, KPI calculations  
+- **Excel** → Pivot tables, dashboards, visualization  
 
-1.	Data Cleaning & Preparation
-⦁	Imported raw sales data into SQL
-⦁	Removed duplicates
-⦁	Handled missing values
-⦁	Standardized formats (dates, product names, region.)
+---
 
-2.	Exploratory Data Analysis (EDA)
-⦁	SQL queries to calculate:
-⦁	Total revenue
-⦁	Top-selling products
-⦁	Regional sales distribution
-⦁	Excel Pivot Tables to summarize data by:
-⦁	Month
-⦁	Region
-⦁	Product category
+## 🔑 Key Steps & Approach
+1. **Data Cleaning & Preparation**
+   - Imported raw sales data into SQL
+   - Removed duplicates
+   - Handled missing values
+   - Standardized formats (dates, product names, etc.)
 
-3.	KPI Tracking
-⦁	Revenue Growth (%)
-⦁	Monthly Sales Trend
-⦁	Top 5 Customers by Purchase Value
+2. **Exploratory Data Analysis (EDA)**
+   - SQL queries to calculate:
+     - Total Revenue
+     - Revenue Contribution by Product
+     - Regional Sales Distribution
+     - Top 3 Products by Sales
+   - Excel Pivot Tables:
+     - Monthly summaries
+     - Region-wise breakdown
+     - Product category analysis
 
-4.	Visualization & Reporting
-⦁	Designed interactive dashboards in Excel
-⦁	Showed:
-⦁	Monthly Sales Trend
-⦁	Region-wise Performance
-⦁	Top Products
+3. **KPI Tracking**
+   - Revenue Growth (%)
+   - Monthly Sales Trend
+   - Top 5 Customers by Purchase Value
 
-🚀 Results & Insights
-⦁	Identified top-performing products and regions
-⦁	Discovered customer buying Gadgets
+4. **Visualization & Reporting**
+   - Interactive Excel dashboards
+   - Visuals:  
+     - Sales trend by month  
+     - Region-wise performance  
+     - Top products chart  
