@@ -1,44 +1,53 @@
-📊 Sales Data Analysis
+Sales data analysis:
+create table Sales (
+OrderID varchar(15),
+OrderDate date,
+Customer_ID varchar(10),
+Region varchar(10),
+Product varchar(25),
+Quantity int,
+UnitPrice int
+)
 
-📌 Objective
-To analyze sales performance, identify customer trends, and revenue
+UPDATE sales
+SET region = 'Unknown'
+WHERE region IS NULL OR TRIM(region) = ''; 
 
- 🛠 Tools & Technologies
-- **SQL** – Data cleaning, transformation, and analysis  
-- **Excel** – Pivot tables, KPI tracking, and dashboards  
+update sales
+set Product=
+case 
+when product ='Lap' then 'Laptop'
+when product in ('Tab','Tabet') then 'Tablet'
+when product in ('sp','Smartph') then  'Smartphone'
+when product ='Headset' then 'Headphones'
+else product
+end;
 
- 🔑 Key Steps & Approach
-1. **Data Cleaning & Preparation**
-   - Imported raw sales data into SQL  
-   - Removed duplicates  
-   - Handled missing values  
-   - Standardized formats (dates, product names, region.)  
+alter table sales
+add column Total_sales int;
 
-2. **Exploratory Data Analysis (EDA)**
-   - SQL queries to calculate:  
-     - Total revenue  
-     - Top-selling products  
-     - Regional sales distribution  
-   - Excel Pivot Tables to summarize data by:  
-     - Month  
-     - Region  
-     - Product category  
+update sales 
+set Total_sales = Quantity * UnitPrice;
 
-3. **KPI Tracking**
-   - Revenue Growth (%)  
-   - Monthly Sales Trend  
-   - Top 5 Customers by Purchase Value  
+select SUM(Total_sales) AS total_revenue FROM sales; 
 
-4. **Visualization & Reporting**
-   - Designed **interactive dashboards in Excel**  
-   - Showed:  
-     - Monthly Sales Trend  
-     - Region-wise Performance  
-     - Top Products  
+select product,
+ sum(Total_sales) as Revenue_by_product
+ from sales
+ group by product
+ order by Revenue_by_product
+ limit 3;
 
+select region,
+round(sum(total_sales) , 2) Regional_Revenue,
+round((sum(total_sales)*100) /(select sum(total_sales) from sales),2) as Regional_Revenue_Percentage
+from sales
+group by region
+order by Regional_Revenue Desc;
 
-🚀 Results & Insights
-- Identified top-performing products and regions  
-- Discovered customer buying trends  
- 
-
+select product,
+round(sum(total_sales),2) as Product_Revenue,
+round(sum(total_sales)*100/(select sum(total_sales) from sales),2) as Product_Revenue_Percentage
+from sales
+group by product
+order by Product_Revenue_Percentage desc;
