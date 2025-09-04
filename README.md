@@ -1,60 +1,44 @@
-# sales-performance-analysis
-This project focuses on analyzing sales data to evaluate performance, identify customer trends, and uncover opportunities for revenue growth. The analysis was performed using SQL for data cleaning and querying, and Excel for KPI tracking and interactive dashboard creation.
-select database ();
-use blinkit;
-create table Sales (
-OrderID varchar(15),
-OrderDate date,
-Customer_ID varchar(10),
-Region varchar(10),
-Product varchar(25),
-Quantity int,
-UnitPrice int
-)
+📊 Sales Data Analysis
 
-select * from sales;
+📌 Objective
+To analyze sales performance, identify customer trends, and revenue
 
-set sql_safe_updates=0;
+ 🛠 Tools & Technologies
+- **SQL** – Data cleaning, transformation, and analysis  
+- **Excel** – Pivot tables, KPI tracking, and dashboards  
 
-UPDATE sales
-SET region = 'Unknown'
-WHERE region IS NULL OR TRIM(region) = ''; 
+ 🔑 Key Steps & Approach
+1. **Data Cleaning & Preparation**
+   - Imported raw sales data into SQL  
+   - Removed duplicates  
+   - Handled missing values  
+   - Standardized formats (dates, product names, region.)  
 
-update sales
-set Product=
-case 
-when product ='Lap' then 'Laptop'
-when product in ('Tab','Tabet') then 'Tablet'
-when product in ('sp','Smartph') then  'Smartphone'
-when product ='Headset' then 'Headphones'
-else product
-end;
+2. **Exploratory Data Analysis (EDA)**
+   - SQL queries to calculate:  
+     - Total revenue  
+     - Top-selling products  
+     - Regional sales distribution  
+   - Excel Pivot Tables to summarize data by:  
+     - Month  
+     - Region  
+     - Product category  
 
-alter table sales
-add column Total_sales int;
+3. **KPI Tracking**
+   - Revenue Growth (%)  
+   - Monthly Sales Trend  
+   - Top 5 Customers by Purchase Value  
 
-update sales 
-set Total_sales = Quantity * UnitPrice;
+4. **Visualization & Reporting**
+   - Designed **interactive dashboards in Excel**  
+   - Showed:  
+     - Monthly Sales Trend  
+     - Region-wise Performance  
+     - Top Products  
 
-select SUM(Total_sales) AS total_revenue FROM sales; 
 
-select product,
- sum(Total_sales) as Revenue_by_product
- from sales
- group by product
- order by Revenue_by_product
- limit 3;
+🚀 Results & Insights
+- Identified top-performing products and regions  
+- Discovered customer buying trends  
+ 
 
-select region,
-round(sum(total_sales) , 2) Regional_Revenue,
-round((sum(total_sales)*100) /(select sum(total_sales) from sales),2) as Regional_Revenue_Percentage
-from sales
-group by region
-order by Regional_Revenue Desc;
-
-select product,
-round(sum(total_sales),2) as Product_Revenue,
-round(sum(total_sales)*100/(select sum(total_sales) from sales),2) as Product_Revenue_Percentage
-from sales
-group by product
-order by Product_Revenue_Percentage desc;
